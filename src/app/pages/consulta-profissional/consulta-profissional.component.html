@@ -1,0 +1,40 @@
+<div class="card">
+    <app-menu ></app-menu>
+    <div class="card-body">
+        <h5 class="card-title">Consulta de Profissionais</h5>
+        <p class="card-text">Listagem de profissionais cadastrados</p>
+
+    </div>
+
+    <hr>
+
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th>Nome do Profissional:</th>
+                <th>Email:</th>
+                <th>CPF:</th>
+                <th>Telefone:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of profissionais">
+                <td> {{p.nome}} </td>
+                <td> {{p.email}} </td>
+                <td> {{p.cpf | mask: '000.000.000-00'}}  </td>
+                <td> {{p.telefone | mask: '(00)00000-0000'}} </td>
+                <td>
+                    <button class="btn btn-outline-primary btn-sm" [routerLink]="['/edicao-profissional', p.idProfissional]">Editar</button>
+                    &nbsp;
+                    <button class="btn btn-outline-danger btn-sm" (click)="onDelete(p.idProfissional)">Excluir</button>
+                </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Quantidade de Profissionais: {{profissionais.length}} </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

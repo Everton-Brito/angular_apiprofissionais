@@ -1,0 +1,68 @@
+<app-menu></app-menu>
+<div class="card-body">
+    <h5 class="card-title">
+        Cadastro de Profissional
+    </h5>
+    <p class="card-text">Preencha os campos para cadastrar um profissional.</p>
+    <hr>
+    <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <label>Nome do Profissional:</label>
+                <input type="text" class="form-control" placeholder="Digite Aqui" formControlName="nome">
+                <div class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+                    <span *ngIf="form.nome.errors.required">Por favor, informe o nome do profissional.</span>
+                    <span *ngIf="form.nome.errors.minlength">Por favor, informe no mínimo 6 caracteres.</span>
+                    <span *ngIf="form.nome.errors.maxlength">Por favor, informe no máximo 150 caracteres.</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <label>Email do Profissional:</label>
+                <input type="text" class="form-control" placeholder="Digite Aqui" formControlName="email">
+                <div class="text-danger" *ngIf="form.email.touched && form.email.invalid">
+                    <span *ngIf="form.email.errors.required">Por favor, informe o email do profissional.</span>
+                    <span *ngIf="form.email.errors.email">Por favor, preencha o email corretamente.</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label>CPF:</label>
+                <input type="text" class="form-control" placeholder="Digite Aqui" formControlName="cpf"
+                    mask="000.000.000.00">
+                <div class="text-danger" *ngIf="form.cpf.touched && form.cpf.invalid">
+                    <span *ngIf="form.cpf.errors.required">Por favor, informe o cpf do profissional.</span>
+                    <span *ngIf="form.cpf.errors.minlength">Por favor, informe no mínimo 11 caracteres.</span>
+                    <span *ngIf="form.cpf.errors.maxlength">Por favor, informe no máximo 11 caracteres.</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label>Telefone:</label>
+                <input type="text" class="form-control" placeholder="Digite Aqui" formControlName="telefone"
+                    mask="(00)00000-0000">
+                <div class="text-danger" *ngIf="form.telefone.touched && form.telefone.invalid">
+                    <span *ngIf="form.telefone.errors.required">Por favor, informe o telefone do profissional.</span>
+                    <span *ngIf="form.telefone.errors.minlength">Por favor, informe no mínimo 11 caracteres.</span>
+                    <span *ngIf="form.telefone.errors.maxlength">Por favor, informe no máximo 11 caracteres.</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <input type="submit" value="Cadastrar Profissional" class="btn btn-success"
+                    [disabled]="!formCadastro.valid">
+            </div>
+        </div>
+
+    </form>
+
+
+    <div class="mt-3">
+        <strong [hidden]="mostrarErro"> {{mensagem_cadastro}} </strong>
+        <div class="mt-3" [hidden]="mensagem_cadastro"><strong> {{errors}} </strong></div>
+    </div>
+
+
+</div>
